@@ -15,6 +15,14 @@ return {
 		    buffer = bufnr,
 		    preserve_mappings = false
 		})
+
+	    lspzero.set_sign_icons({
+		error = "",
+		warn = "",
+		hint = "",
+		info = "",
+            })
+
 	    end)
 
 	    require("lazy-lsp").setup({})

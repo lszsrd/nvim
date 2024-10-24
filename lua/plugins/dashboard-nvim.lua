@@ -8,7 +8,7 @@ return {
 
 	config = function()
 	    require("dashboard").setup({
-		shortcut_type = "number",
+		shortcut_type = "number"
 	    })
 	end,
     }

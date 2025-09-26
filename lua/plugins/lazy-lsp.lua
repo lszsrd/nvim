@@ -1,31 +1,25 @@
-return {
-    {
-	"dundalek/lazy-lsp.nvim",
+return
+{
+    "dundalek/lazy-lsp.nvim",
 
-	dependencies = {
-	    "VonHeikemen/lsp-zero.nvim",
-	    "neovim/nvim-lspconfig",
+    dependencies = {
+	{
+	    "neovim/nvim-lspconfig", tag = "v2.5.0"
 	},
+        {
+            "VonHeikemen/lsp-zero.nvim", branch = "v3.x"
+        },
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/nvim-cmp",
+    },
 
-	config = function ()
-	    local lspzero = require("lsp-zero")
+    config = function()
+        require("lazy-lsp").setup {
+            excluded_servers = {
+                "ccls", "sourcekit",
+            },
 
-	    lspzero.on_attach(function(client, bufnr)
-		lspzero.default_keymaps({
-		    buffer = bufnr,
-		    preserve_mappings = false
-		})
-
-	    lspzero.set_sign_icons({
-		error = "",
-		warn = "",
-		hint = "",
-		info = "",
-            })
-
-	    end)
-
-	    require("lazy-lsp").setup({})
-	end
-    }
+            prefer_local = true,
+        }
+    end
 }

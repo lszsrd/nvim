@@ -12,6 +12,7 @@ vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes"
 vim.opt.scrolloff = 8
 vim.opt.listchars = 'trail:·,nbsp:◇,tab:→ ,extends:▸,precedes:◂,eol:⁋'
+vim.diagnostic.config({virtual_text = true})
 
 vim.opt.showmode = false
 

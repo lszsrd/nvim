@@ -1,9 +1,11 @@
 return
 {
-    "sainnhe/gruvbox-material",
+    "folke/tokyonight.nvim",
 
-    config = function()
-        vim.g.gruvbox_materials_enable_italic = true
-        vim.cmd.colorscheme "gruvbox-material"
+    lazy = false,
+    priority = 1000,
+
+    config = function ()
+        vim.cmd.colorscheme "tokyonight-moon"
     end
 }

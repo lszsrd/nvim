@@ -4,50 +4,49 @@ return
 
     dependencies = {
         "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-cmdline",
+        "hrsh7th/cmp-path",
         "hrsh7th/cmp-buffer",
         "onsails/lspkind.nvim",
     },
 
     config = function()
         local cmp = require("cmp")
+        local lspkind = require("lspkind")
 
         cmp.setup({
-            sources = {
-                { name = "nvim_lsp", },
-                { name = "buffer" }
-            },
-
-            formatting = {
-                format = require("lspkind").cmp_format({
-                    mode = "symbol_text",
-                    maxwidth = {
-                        menu = 50,
-                        abbr = 50,
-                    },
-                    show_labelDetails = true,
-                    before = function (entry, vim_item)
-                        return vim_item
-                    end
-                })
-            },
-
-            mapping = cmp.mapping.preset.insert({
-                ["<Cr>"] = cmp.mapping.confirm({ select = true })
-            })
+             sources = cmp.config.sources({
+                 { name = "nvim_lsp" },
+                 { name = "luasnip" },
+                 { name = "path" },
+             }, {
+                 { name = 'buffer' },
+             }),
+             mapping = cmp.mapping.preset.insert({
+                 ['<tab>'] = cmp.mapping.scroll_docs(-4),
+                 ['<C-tab>'] = cmp.mapping.scroll_docs(4),
+                 ['<C-e>'] = cmp.mapping.abort(),
+                 ['<CR>'] = cmp.mapping.confirm({ select = true }),
+             }),
+             window = {
+                 completion = cmp.config.window.bordered({ border = "rounded" }),
+                 documentation = cmp.config.window.bordered({ border = "rounded" }),
+             },
+             formatting = {
+                 format = lspkind.cmp_format({
+                     mode = "symbol_text",
+                     ellipsis_char = "...",
+                     before = function(_, item)
+                         return item
+                     end,
+                 }),
+             },
         })
 
-        cmp.setup.cmdline(':', {
+        cmp.setup.cmdline('/', {
             mapping = cmp.mapping.preset.cmdline(),
-            sources = cmp.config.sources({{ name = 'path' }},
-            {
-                {
-                    name = 'cmdline',
-                    option = {
-                        ignore_cmds = { 'Man', '!' }
-                    }
-                }
-            })
+            sources = {
+                { name = 'buffer' }
+            }
         })
     end
 }

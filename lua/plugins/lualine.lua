@@ -75,10 +75,10 @@ return
                 return "No active LSP"
             end,
             color = function()
-                if next(vim.lsp.buf_get_clients(vim.api.nvim_get_current_buf())) == nil then
+                if next(vim.lsp.get_clients{bufnr = 0}) == nil then
                     return { fg = "#ff757f", gui = "bold" }
                 end
-                return { fg = "fca7ea" }
+                return { fg = "#fca7ea" }
             end,
             icon = "",
         })

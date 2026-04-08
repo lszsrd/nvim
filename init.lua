@@ -1,1 +1,1 @@
-require("core")
+require("lua.config.init")

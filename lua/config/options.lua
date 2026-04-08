@@ -34,8 +34,6 @@ opt.undofile = true
 opt.undodir = vim.fn.expand("~/.vim/undodir")
 opt.autoread = true
 
--- opt.iskeyword:append("-")
-
 opt.listchars = 'trail:·,nbsp:␣,tab:→ ,extends:▸,precedes:◂,eol:⁋'
 
 vim.diagnostic.config({
